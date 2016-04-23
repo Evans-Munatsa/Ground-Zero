@@ -23,9 +23,6 @@ app.engine('hbs', expressHandlebars({
     defaultLayout: 'main'
 }));
 app.set('view engine', 'hbs');
-// var board = new five.Board();
-
-
 app.use(express.static('public'));
 
 board.on("ready", function() {
@@ -44,40 +41,32 @@ board.on("ready", function() {
             robot.forward();
             say.speak('Forward', 'Alex', 1);
         });
-    });
 
-    io.sockets.on('connection', function(socket) {
         socket.on('click1', function() {
             console.log('backward');
             robot.reverse();
             say.speak('Reverse', 'Alex', 1);
 
         });
-    });
 
-    io.sockets.on('connection', function(socket) {
         socket.on('click2', function() {
             console.log('Left');
             say.speak('Left', 'Alex', 1);
             robot.left();
         });
-    });
 
-    io.sockets.on('connection', function(socket) {
         socket.on('click3', function() {
-          say.speak('Right', 'Alex', 1);
+            say.speak('Right', 'Alex', 1);
             console.log('Right');
             robot.right();
         });
-    });
 
-    io.sockets.on('connection', function(socket) {
-        socket.on('click4', function() {
-          say.speak('stopping', 'Alex', 1);
-            console.log('stopping');
-            robot.stop();
-        });
+    socket.on('click4', function() {
+        say.speak('Stop', 'Alex', 1);
+        console.log('stopping');
+        robot.stop();
     });
+  });
 
 });
 

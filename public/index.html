@@ -1,62 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
+  <head>
+     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>DMD Robots</title>
     <link rel="icon" type="image/png" href="./icon.jpg">
-    <link href='http://fonts.googleapis.com/css?family=Dosis:400,600' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Dosis:400,600' rel='stylesheet' type='text/css'>
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel='stylesheet' type='text/css' href="main.css">
+    <!-- Optional theme -->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800' rel='stylesheet' type='text/css'>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script type='text/javascript' src='main.js'></script>
 </head>
 
 
-<body>
-
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                <a href="#" class="navbar-brand">Application</a>
-            </div>
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="/">Home</a></li>
-                    <li><a href="/users">Users</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
 
 
 
+  <body>
     <div class="container">
-        <div id="reading">
-            <h4>Control your robot with a click of a button</h4>
-            <h4 id="text">Direction control</h4>
-            <p>
-                <button id="4wrd" href="#"><img src='forward.png'></button>
-            </p>
-            <p>
-                <button id="left" href="#"><img src='left.png'></button>
-            </p>
-            <p>
-                <button id="right" href="#"><img src='right.png'></button>
-            </p>
-            <p>
-                <button id="back" href="#"><img src='down.png'></button>
-            </p>
-            <p>
-                <button id="stop" href="#"><img src='stop.png'></button>
-            </p>
-        </div>
-    </div>
+        <h1>Control your robot with a click of a button</h1>
+    <div class="row">
+      <div class="col-md-4" id='lights'>
+      <h4>Lights control</h4>
+      <p class='lightBtn'>Front Lights
+      <img id="frontLights" class='light' src='off.png'></p>
+      <p class='lightBtn'>Neon Lights
+      <img id="neon" class='light' src='off.png' ></p>
+      <h4>Party lights</h4>
+       <p class='lightBtn'>on/off &nbsp<img id="stopDelay" class='light' src='off.png'></p>
+      </div>
+
+
+       <div id="reading">
+      <h4 id="text">Direction control</h4>
+      <p><button id="4wrd" href="#"><img src='forward.png'></button></p>
+      <p><button id="left" href="#"><img src='left.png'></button></p>
+      <p><button id="right" href="#"><img src='right.png'></button></p>
+      <p><button id="back" href="#"><img src='down.png'></button></p>
+       <p><button id="stop" href="#"><img src='stop.png'></button></p>
+      </div>
+
+      <div id='music'>
+      <h4 id="text">Music control</h4>
+      <p class='lightBtn'>Music on/off &nbsp<img id="musicToggle" class='light' src='off.png'></p>
+      <img id='animation' src="dancer.gif">
+      </div>
+
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -64,37 +65,47 @@
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script src="/socket.io.js"></script>
     <script>
-        var socket = io();
+
+
+      var socket = io();
+
+      socket.on('news', function (data) {
+        console.log(data);
+      });
     </script>
     <script>
+    $(document).ready(function() {
+      $('#4wrd').click(function(e){
+        socket.emit('click');
+        e.preventDefault();
+      });
+});
+      //
+      $(document).ready(function() {
+      $('#back').click(function(e){
+        socket.emit('click1');
+        e.preventDefault();
+      });
+    });
+     $(document).ready(function() {
+      $('#left').click(function(e){
+        socket.emit('click2');
+        e.preventDefault();
+      });
+    });
+    $(document).ready(function() {
+      $('#right').click(function(e){
+        socket.emit('click3');
+        e.preventDefault();
+      });
+    });
         $(document).ready(function() {
-            $('#4wrd').click(function(e) {
-                socket.emit('click');
-                e.preventDefault();
-            });
+      $('#stop').click(function(e){
+        socket.emit('click4');
+        e.preventDefault();
+      });
+    });
+  </script>
 
-            $('#back').click(function(e) {
-                socket.emit('click1');
-                e.preventDefault();
-            });
-
-            $('#left').click(function(e) {
-                socket.emit('click2');
-                e.preventDefault();
-            });
-
-            $('#right').click(function(e) {
-                socket.emit('click3');
-                e.preventDefault();
-            });
-
-            $('#stop').click(function(e) {
-                socket.emit('click4');
-                e.preventDefault();
-            });
-        });
-    </script>
-
-</body>
-
+    </body>
 </html>

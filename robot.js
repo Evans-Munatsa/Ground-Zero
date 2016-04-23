@@ -1,5 +1,4 @@
 var Robot = function(rightWheel, leftWheel){
-  
 
   this.left = function(cb){
     leftWheel.forward();
@@ -13,7 +12,7 @@ var Robot = function(rightWheel, leftWheel){
     var self = this;
     self[direction]();
     setTimeout(function(){
-      self.stop(); 
+      self.stop();
     }, duration)
 
   }
