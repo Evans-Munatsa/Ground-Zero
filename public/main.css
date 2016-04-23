@@ -1,6 +1,10 @@
 body{
 		transform:scale(0);
-	background:url('./robot.jpg')no-repeat center center fixed; 
+	background:url('./geotag.gif')no-repeat center fixed; 
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 	margin-left:-100%;
 	transition:all 2s ease-in-out;
 	-moz-filter:blur(0.8px);
@@ -33,7 +37,7 @@ body{
 
 
 
-h1{ text-shadow:1px 1px turquoise;
+h4{ text-shadow:1px 1px turquoise;
 	font-family: 'Open Sans', sans-serif;
 	background-image:url('h2.jpg');
         background-size:cover;
@@ -114,7 +118,7 @@ h4{
 }
 #reading{
 	float:left;
-	background:url(bb2.png);
+	background:darkslateblue;
 	color:turquoise;
 	box-shadow: 1px 1px 50px 3px black;
 	border-radius:10px;
@@ -122,10 +126,9 @@ h4{
 	font-weight: 900;
 	text-align: center;
 	border:4px solid black;
-	margin-left: 3%;
 	width:25vw;
 	height:70vh;
-	margin-top: 5%;
+	margin-top: 100px;
 	-webkit-animation:lightup 3s alternate infinite;
 	-webkit-animation-play-state:running;
 	-webkit-animation-delay:0.3s;

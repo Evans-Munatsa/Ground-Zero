@@ -73,7 +73,7 @@ board.on("ready", function() {
 
     io.sockets.on('connection', function(socket) {
         socket.on('click4', function() {
-          say.speak('Stop', 'Alex', 1);
+          say.speak('stopping', 'Alex', 1);
             console.log('stopping');
             robot.stop();
         });
