@@ -88,6 +88,7 @@ ping.on('change',function(value){
             socket.emit('stop',{stop:stop})
 
         }else{
+          var stop = ''
           socket.emit('stop',{stop:stop})
         }
 });
