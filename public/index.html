@@ -22,6 +22,8 @@
     <![endif]-->
    <script src="/jquery.min.js"></script>
     <script type='text/javascript' src='main.js'></script>
+    <!-- <script src="/handlebars-v4.0.5.js" charset="utf-8"></script> -->
+
 </head>
 
   <body>
@@ -53,6 +55,61 @@
           <p><button id="stop" href="#"><img src='stop.png'></button></p>
       </div>
 
+                  <table>
+                      <thead>
+                          <tr>
+                              <th>
+
+                              </th>
+                              <th>
+                                  Name
+                              </th>
+                              <th>
+                                  Latitude
+                              </th>
+                              <th>
+                                  Longitude
+                              </th>
+
+                          </tr>
+                      </thead>
+                      <tbody id="locations">
+                          {{#locations}}
+                              <tr>
+                                  <td>
+                                      <input type="checkbox" name="selected" value="{{id}}">
+                                  </td>
+                                  <td>
+                                      {{description}}
+                                  </td>
+                                  <td>
+                                      {{latitude}}
+                                  </td>
+                                  <td>
+                                      {{longitude}}
+                                  </td>
+                                  <td>
+                                      <a href="/locations/delete/{{id}}">Delete</a>
+                                  </td>
+                              </tr>
+                          {{/locations}}
+                      </tbody>
+                  </table>
+              </form>
+
+          </div>
+          <div class="four columns">
+              <h2>Distance</h2>
+              <div id="distance">
+
+              </div>
+              <hr>
+              <div id="map">
+
+              </div>
+
+          </div>
+      </div>
       <div id='music'>
 
       </div>
@@ -60,6 +117,7 @@
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/app.js" charset="utf-8"></script>
     <script src="/bootstrap.min.js"></script>
     <script src="/socket.io.js"></script>
     <script>
@@ -116,6 +174,8 @@
       })
     });
   </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlIb6sdYYYH_AczLln9YqQd3QPPt828N4&signed_in=true&callback=initMap"></script>
 
     </body>
+
 </html>

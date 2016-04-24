@@ -1,6 +1,6 @@
 body{
 		transform:scale(0);
-	background:url('./robot.jpg')no-repeat center center fixed; 
+	background:url('./robot.jpg')no-repeat center center fixed;
 	margin-left:-100%;
 	transition:all 2s ease-in-out;
 	-moz-filter:blur(0.8px);
@@ -30,7 +30,10 @@ body{
 		box-shadow: 1px 1px 50px 10px black;
 	}
 }
-
+#map {
+							 height: 15em;
+							 background-color: black;
+					 }
 
 
 h1{ text-shadow:1px 1px turquoise;
@@ -88,7 +91,7 @@ h4{
 	-webkit-animation-play-state:running;
 	-moz-animation:lightup 3s alternate infinite;
 	-moz-animation-play-state:running;
-	
+
 }
 .lightBtn{
 	color:white;
@@ -104,8 +107,8 @@ h4{
 }
 .light:hover{
 	-webkit-filter: drop-shadow(1px 1px 5px red);
-    filter:         drop-shadow(1px 1px 5px red); 
-   
+    filter:         drop-shadow(1px 1px 5px red);
+
 }
 
 #lights:hover{
@@ -197,5 +200,3 @@ button:hover{
     max-height:100%;
     max-width:100%;
 }
-
-
