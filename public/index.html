@@ -55,61 +55,11 @@
           <p><button id="stop" href="#"><img src='stop.png'></button></p>
       </div>
 
-                  <table>
-                      <thead>
-                          <tr>
-                              <th>
 
-                              </th>
-                              <th>
-                                  Name
-                              </th>
-                              <th>
-                                  Latitude
-                              </th>
-                              <th>
-                                  Longitude
-                              </th>
+      <div id="map">
 
-                          </tr>
-                      </thead>
-                      <tbody id="locations">
-                          {{#locations}}
-                              <tr>
-                                  <td>
-                                      <input type="checkbox" name="selected" value="{{id}}">
-                                  </td>
-                                  <td>
-                                      {{description}}
-                                  </td>
-                                  <td>
-                                      {{latitude}}
-                                  </td>
-                                  <td>
-                                      {{longitude}}
-                                  </td>
-                                  <td>
-                                      <a href="/locations/delete/{{id}}">Delete</a>
-                                  </td>
-                              </tr>
-                          {{/locations}}
-                      </tbody>
-                  </table>
-              </form>
-
-          </div>
-          <div class="four columns">
-              <h2>Distance</h2>
-              <div id="distance">
-
-              </div>
-              <hr>
-              <div id="map">
-
-              </div>
-
-          </div>
       </div>
+          </div>
       <div id='music'>
 
       </div>
