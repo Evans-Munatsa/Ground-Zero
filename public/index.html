@@ -102,6 +102,18 @@
         e.preventDefault();
       });
     });
+    $(document).ready(function() {
+      socket.on('temp',function(data){
+      	$("#music").html('<p>' + data.temp + '</p>');
+
+      })
+    });
+    $(document).ready(function() {
+      socket.on('alert',function(data){
+        $("#music").html("<p>"+data.alert+"</p>");
+
+      })
+    });
   </script>
 
     </body>

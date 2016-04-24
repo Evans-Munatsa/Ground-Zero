@@ -26,9 +26,15 @@ app.set('view engine', 'hbs');
 app.use(express.static('public'));
 
 board.on("ready", function() {
-
+    var ping = new five.Ping(4);
     var wheel1 = new Wheel(9, 8, 180),
         wheel2 = new Wheel(6, 7, 180);
+        const temperature = new five.Thermometer({
+          controller: 'TMP36',
+          pin: 'A0',
+          freq:600
+        });
+
 
     var robot = new Robot(wheel1, wheel2);
     this.repl.inject({
@@ -66,8 +72,21 @@ board.on("ready", function() {
         console.log('stopping');
         robot.stop();
     });
-  });
-
+  temperature.on('data', function() {
+    // console.log(this.celsius);
+    var temp = this.celsius;
+  socket.emit('temp',{temp:temp})
+});
+ping.on('change',function(value){
+  console.log(value);
+  console.log(this.in);
+  if(this.in > 2 && this.in < 3){
+            robot.stop();
+            var alert = 'Object, detected stopping now'
+          socket.emit('alert',{alert:alert})
+        }
+});
+});
 });
 
 var port = process.env.port || 3007;
