@@ -82,7 +82,7 @@ ping.on('change',function(value){
   console.log(this.in);
   if(this.in > 2 && this.in < 3){
             robot.stop();
-            var alert = 'Object, detected stopping now'
+            var alert = 'Object, detected stopping now';
           socket.emit('alert',{alert:alert})
         }
 });
