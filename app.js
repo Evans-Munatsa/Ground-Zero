@@ -32,7 +32,7 @@ board.on("ready", function() {
         const temperature = new five.Thermometer({
           controller: 'TMP36',
           pin: 'A0',
-          freq:600
+
         });
 
 
@@ -40,7 +40,7 @@ board.on("ready", function() {
     this.repl.inject({
         robot: robot
     });
-
+    robot.reverse().stop();
     io.sockets.on('connection', function(socket) {
         socket.on('click', function() {
             console.log('Forward');
@@ -70,7 +70,7 @@ board.on("ready", function() {
     socket.on('click4', function() {
         say.speak('Stop', 'Alex', 1);
         console.log('stopping');
-        robot.stop();
+        robot.reverse().stop();
     });
   temperature.on('data', function() {
     // console.log(this.celsius);
@@ -78,12 +78,17 @@ board.on("ready", function() {
   socket.emit('temp',{temp:temp})
 });
 ping.on('change',function(value){
-  console.log(value);
+  // console.log(value);
   console.log(this.in);
+  var values = this.in;
+  socket.emit('alert',{alert:values})
   if(this.in > 2 && this.in < 3){
-            robot.stop();
-            var alert = 'Object, detected stopping now';
-          socket.emit('alert',{alert:alert})
+    robot.reverse().stop();
+            var stop = 'Object, detected stopping now';
+            socket.emit('stop',{stop:stop})
+
+        }else{
+          socket.emit('stop',{stop:stop})
         }
 });
 });

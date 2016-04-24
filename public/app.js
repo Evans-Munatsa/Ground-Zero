@@ -83,7 +83,7 @@ $(function(){
             lng: 18.4189704
         };
 
-        map = new google.maps.Map(document.getElementById('map'), {
+        map = new google.maps.Map(document.getElementById('lights'), {
             zoom: 10,
             center: myLatLng
         });
@@ -96,24 +96,24 @@ $(function(){
     };
 
 
-    function addMarker(location) {
-        var marker = new google.maps.Marker({
-            position: location,
-            map: map
-        });
-        markers.push(marker);
-    }
-
-    // Sets the map on all markers in the array.
-    function setMapOnAll(map) {
-      for (var i = 0; i < markers.length; i++) {
-        markers[i].setMap(map);
-      }
-    }
-
-    // Removes the markers from the map, but keeps them in the array.
-    function clearMarkers() {
-      setMapOnAll(null);
-    }
+    // function addMarker(location) {
+    //     var marker = new google.maps.Marker({
+    //         position: location,
+    //         map: map
+    //     });
+    //     markers.push(marker);
+    // }
+    //
+    // // Sets the map on all markers in the array.
+    // function setMapOnAll(map) {
+    //   for (var i = 0; i < markers.length; i++) {
+    //     markers[i].setMap(map);
+    //   }
+    // }
+    //
+    // // Removes the markers from the map, but keeps them in the array.
+    // function clearMarkers() {
+    //   setMapOnAll(null);
+    // }
 
 });
