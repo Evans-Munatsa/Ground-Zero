@@ -8,10 +8,10 @@ const express = require('express'),
     Wheel = require('./wheels'),
     Robot = require('./robot'),
     say = require('say'),
-    // board = new five.Board({
-    //     port: '/dev/tty.CAPEBOT2-DevB'
-    // });
-    board = new five.Board();
+    board = new five.Board({
+        port: '/dev/tty.CAPEBOT2-DevB'
+    });
+    // board = new five.Board();
 
 
 app.use(bodyParser.urlencoded({
