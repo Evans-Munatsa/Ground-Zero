@@ -11,7 +11,7 @@ const express = require('express'),
     board = new five.Board({
         port: '/dev/tty.CAPEBOT2-DevB'
     });
-    // board = new five.Board();
+// board = new five.Board();
 
 
 app.use(bodyParser.urlencoded({
@@ -29,11 +29,11 @@ board.on("ready", function() {
     var ping = new five.Ping(4);
     var wheel1 = new Wheel(9, 8, 180),
         wheel2 = new Wheel(6, 7, 180);
-        const temperature = new five.Thermometer({
-          controller: 'TMP36',
-          pin: 'A0',
+    const temperature = new five.Thermometer({
+        controller: 'TMP36',
+        pin: 'A0',
 
-        });
+    });
 
 
     var robot = new Robot(wheel1, wheel2);
@@ -67,32 +67,37 @@ board.on("ready", function() {
             robot.right();
         });
 
-    socket.on('click4', function() {
-        say.speak('Stop', 'Alex', 1);
-        console.log('stopping');
-        robot.reverse().stop();
-    });
-  temperature.on('data', function() {
-    // console.log(this.celsius);
-    var temp = this.celsius;
-  socket.emit('temp',{temp:temp})
-});
-ping.on('change',function(value){
-  // console.log(value);
-  console.log(this.in);
-  var values = this.in;
-  socket.emit('alert',{alert:values})
-  if(this.in > 2 && this.in < 3){
-    robot.reverse().stop();
-            var stop = 'Object, detected stopping now';
-            socket.emit('stop',{stop:stop})
+        socket.on('click4', function() {
+            say.speak('Stop', 'Alex', 1);
+            console.log('stopping');
+            robot.reverse().stop();
+        });
+        temperature.on('data', function() {
+            var temp = this.celsius;
+            socket.emit('temp', {
+                temp: temp
+            })
+        });
+        ping.on('change', function(value) {
+            var values = this.in;
+            socket.emit('alert', {
+                alert: values
+            })
+            if (this.in > 2 && this.in < 3) {
+                robot.reverse().stop();
+                var stop = 'Object, detected stopping now';
+                socket.emit('stop', {
+                    stop: stop
+                })
 
-        }else{
-          var stop = ''
-          socket.emit('stop',{stop:stop})
-        }
-});
-});
+            } else {
+                var stop = ''
+                socket.emit('stop', {
+                    stop: stop
+                })
+            }
+        });
+    });
 });
 
 var port = process.env.port || 3007;
