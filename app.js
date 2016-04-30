@@ -27,13 +27,13 @@ app.use(express.static('public'));
 
 board.on("ready", function() {
    var ping = new five.Ping(12);
-    var wheel1 = new Wheel(3, 4, 180),
-        wheel2 = new Wheel(6, 7, 180);
-    // const temperature = new five.Thermometer({
-    //     controller: 'TMP36',
-    //     pin: 'A0',
-    //
-    // });
+    var wheel1 = new Wheel(3, 4, 200),
+        wheel2 = new Wheel(6, 7, 200);
+    const temperature = new five.Thermometer({
+        controller: 'TMP36',
+        pin: 'A0',
+
+    });
 
 
     var robot = new Robot(wheel1, wheel2);
@@ -72,12 +72,12 @@ board.on("ready", function() {
             console.log('stopping');
             robot.reverse().stop();
         });
-        // temperature.on('data', function() {
-        //     var temp = this.celsius;
-        //     socket.emit('temp', {
-        //         temp: temp
-        //     })
-        // });
+        temperature.on('data', function() {
+            var temp = this.celsius;
+            socket.emit('temp', {
+                temp: temp
+            })
+        });
         ping.on('change', function(value) {
             var values = this.in;
             socket.emit('alert', {
